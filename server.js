@@ -26,7 +26,7 @@ loadEnv();
 const CLIENT_ID = process.env.CLIENT_ID || "";
 const USERNAME = process.env.USERNAME || "";
 const API_KEY = process.env.API_KEY || "";
-const LFB_BASE_URL = process.env.LFB_BASE_URL || "http://localhost:5050";
+const LFB_BASE_URL = process.env.LFB_BASE_URL;
 const API_PORT = parseInt(process.env.API_PORT || "3061", 10);
 const VERYFI_API_BASE = "https://api.veryfi.com/api/v8/partner";
 
@@ -61,8 +61,6 @@ app.post("/api/generate-qr", async (req, res) => {
     return res.status(500).json({ error: "LFB_BASE_URL not configured" });
   }
 
-  const captureUrl = "https://lens-pwa.veryfi.com/";
-
   try {
     const response = await fetch(`${LFB_BASE_URL}/api/generate_qr`, {
       method: "POST",
@@ -77,7 +75,6 @@ app.post("/api/generate-qr", async (req, res) => {
         mode: mode || "document",
         ...(blueprint ? { blueprint } : {}),
         expires_in: expires_in || 3600,
-        base_url: captureUrl,
         is_async: true,
       }),
     });
