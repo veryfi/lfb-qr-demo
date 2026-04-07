@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veryfi LFB Demo</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <svg viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="24">
+            <text x="0" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="white">veryfi</text>
+          </svg>
+        </div>
+        <h1 class="header-title">LFB Demo</h1>
+      </header>
+
+      <!-- Configure Panel -->
+      <main class="main">
+        <div id="configure-panel" class="panel">
+          <h2 class="panel-title">Configure Capture</h2>
+
+          <div class="form-group">
+            <label for="mode">Capture Mode</label>
+            <select id="mode">
+              <option value="document">Receipts & Invoices</option>
+              <option value="anydocs">Anydocs</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="blueprint-group" style="display: none">
+            <label for="blueprint">Blueprint</label>
+            <input type="text" id="blueprint" placeholder="e.g. us_health_insurance_card" />
+          </div>
+
+          <div class="form-group">
+            <label for="external-id">External ID <span class="optional">(optional)</span></label>
+            <input type="text" id="external-id" placeholder="e.g. ORDER-12345" />
+          </div>
+
+          <div class="form-group">
+            <label for="expires-in">Expires In (seconds)</label>
+            <input type="number" id="expires-in" value="3600" min="60" max="86400" />
+          </div>
+
+          <button id="generate-btn" class="btn-primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h5v5H3zM16 3h5v5h-5zM3 16h5v5H3zM16 16h2v2h-2zM21 16h-2v5h2v-3zM16 21h2v-2h-2zM12 7h1v1h-1zM12 3h1v1h-1zM12 12h1v1h-1zM7 12h1v1H7zM3 12h1v1H3zM12 16h1v1h-1z"/>
+            </svg>
+            Generate QR Code
+          </button>
+        </div>
+
+        <!-- QR + Result Panel (hidden initially) -->
+        <div id="qr-panel" class="panel" style="display: none">
+          <button id="back-btn" class="btn-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back
+          </button>
+
+          <!-- QR display -->
+          <div id="qr-container" class="qr-container">
+            <div id="qr-loading" class="qr-loading" style="display: none">
+              <div class="spinner"></div>
+              <p>Generating QR code...</p>
+            </div>
+            <div id="qr-error" class="qr-error" style="display: none"></div>
+            <div id="qr-display" style="display: none">
+              <h3 class="qr-title">Scan with your phone</h3>
+              <div class="qr-frame">
+                <img id="qr-image" alt="QR Code" width="280" height="280" />
+              </div>
+              <p class="qr-hint">Point your phone camera at the QR code to open the document scanner</p>
+            </div>
+          </div>
+
+          <!-- Waiting indicator -->
+          <div id="waiting-indicator" class="waiting" style="display: none">
+            <div class="spinner-small"></div>
+            <span>Waiting for document...</span>
+          </div>
+
+          <!-- Webhook result -->
+          <div id="result-container" class="result-container" style="display: none">
+            <div class="result-header">
+              <div class="result-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <h3 class="result-title">Document Received</h3>
+            </div>
+            <pre id="result-json" class="result-json"></pre>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          Powered by
+          <a href="https://www.veryfi.com/" target="_blank" rel="noopener noreferrer">Veryfi</a>
+          Lens for Browser
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

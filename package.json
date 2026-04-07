@@ -1,0 +1,19 @@
+{
+  "name": "lfb-qr-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"node server.js\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "concurrently": "9.1.2",
+    "cors": "2.8.5",
+    "express": "4.21.2"
+  },
+  "devDependencies": {
+    "vite": "6.2.5"
+  }
+}
