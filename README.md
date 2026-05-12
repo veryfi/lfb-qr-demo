@@ -33,7 +33,7 @@ npm install
 CLIENT_ID=your_client_id
 USERNAME=your_username
 API_KEY=your_api_key
-LFB_BASE_URL=http://localhost:5050
+LFB_BASE_URL=https://lens.veryfi.com
 API_PORT=3061
 ```
 
