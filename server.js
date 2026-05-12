@@ -41,7 +41,6 @@ const credentialsMap = new Map();
 
 const EVENT_ENDPOINTS = {
   document: "documents",
-  check: "checks",
   anydocument: "any-documents",
 };
 
